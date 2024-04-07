@@ -28,12 +28,7 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: 
-          curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
-          curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list
-          sudo apt-get update
-          sudo apt-get install -y unixodbc-dev
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
@@ -71,4 +66,4 @@ jobs:
         with:
           app-name: 'devops-ux-api'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_43EED16E68694276BCF327BDD9EF9180 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_74839A0620CB4A3398294F64356989B9 }}
