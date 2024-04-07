@@ -24,11 +24,14 @@ jobs:
           source venv/bin/activate
           pip install --upgrade pip
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unixodbc-dev # Install ODBC driver dependencies
+
       - name: Install dependencies
         run: |
-           sudo apt-get update
-           sudo apt-get install -y unixodbc-dev
-           pip install -r requirements.txt
+          pip install -r requirements.txt
         
       - name: Zip artifact for deployment
         run: zip -r release.zip *
@@ -60,5 +63,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'devops-ux-api'
-          slot-name: 'production' # Change to appropriate slot name
+          slot-name: 'production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_74839A0620CB4A3398294F64356989B9 }}
